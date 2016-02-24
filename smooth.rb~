@@ -1,0 +1,15 @@
+RED_PIN=17
+GREEN_PIN=18
+BLUE_PIN=22
+
+(1..16777215).step(1000) do |n|
+  colors = n.to_s(16).rjust(6, '0').scan(/../).map{|c| c.to_i(16) }
+  puts colors.inspect
+  `echo "#{RED_PIN}=#{colors[0]/255.0}" > /dev/pi-blaster`
+  `echo "#{GREEN_PIN}=#{colors[1]/255.0}" > /dev/pi-blaster`
+  `echo "#{BLUE_PIN}=#{colors[2]/255.0}" > /dev/pi-blaster`
+ end
+
+
+
+

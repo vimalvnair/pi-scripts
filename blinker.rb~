@@ -1,0 +1,16 @@
+require 'wiringpi2'
+
+[0,1,2].cycle(1714) do |pin_number|
+  io = WiringPi::GPIO.new do |gpio|
+    gpio.pin_mode(pin_number, WiringPi::OUTPUT)
+  end
+  io.digital_write(pin_number, WiringPi::HIGH)
+  io.delay(700)
+  io.digital_write(pin_number, WiringPi::LOW)
+end
+
+#io = WiringPi::GPIO.new do |gpio|
+#  gpio.pin_mode(0, WiringPi::OUTPUT)
+#  gpio.pin_mode(1, WiringPi::OUTPUT)
+#  gpio.pin_mode(2, WiringPi::OUTPUT)
+#end
